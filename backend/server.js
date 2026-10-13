@@ -51,7 +51,7 @@ async function weather(city) {
   };
 }
 
-const server = http.createServer(async (req, res) => {
+async function handler(req, res) {
   try {
     const url = new URL(req.url, 'http://localhost');
     if (req.method !== 'GET') return json(res, 405, { error: 'GET 요청만 지원합니다.' });
@@ -78,10 +78,12 @@ const server = http.createServer(async (req, res) => {
     console.error(error.message);
     json(res, 500, { error: '서버 오류가 발생했습니다.' });
   }
-});
+}
+
+const server = http.createServer(handler);
 
 if (require.main === module) {
   const port = Number(process.env.PORT || 3000);
   server.listen(port, '127.0.0.1', () => console.log(`날씨 앱: http://localhost:${port}`));
 }
-module.exports = { server };
+module.exports = { server, handler };

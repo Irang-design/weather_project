@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "node backend/build.js",
+  "outputDirectory": "dist",
+  "functions": {
+    "api/weather.js": { "maxDuration": 30 }
+  }
+}

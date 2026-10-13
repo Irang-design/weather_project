@@ -49,3 +49,19 @@ weather/
 - API 키 없이 사용 가능한 무료 비상업용 API를 사용합니다. 상업용 서비스에는 별도 이용 조건이 적용됩니다: https://open-meteo.com/en/pricing
 - 현재 날씨는 기상 모델 기반 데이터입니다. 백엔드에 인터넷 연결이 필요합니다.
 - 데이터 제공처 Open-Meteo와 GeoNames 링크를 화면에 표시합니다.
+
+## Vercel 배포
+
+로컬 실행 방법은 위와 같습니다. Vercel에서는 정적 프론트엔드와 서버리스 API로 실행됩니다.
+
+- `backend/build.js`: 프론트엔드 파일을 배포용 `dist/`에 복사합니다.
+- `api/weather.js`: `/api/weather` 요청을 기존 백엔드 처리 함수로 전달합니다.
+- `vercel.json`: 빌드 명령, 출력 디렉터리 및 API 실행 시간을 설정합니다.
+
+1. Vercel에서 이 GitHub 저장소를 Import합니다.
+2. Root Directory는 저장소 루트로 둡니다. `frontend` 또는 `backend`를 선택하지 마세요.
+3. Framework Preset은 **Other**를 사용합니다. 별도 빌드 설정 Override는 끄고 `vercel.json`을 사용하세요.
+4. Deploy를 누릅니다. API 키나 환경 변수는 필요 없습니다.
+5. GitHub의 `main` 브랜치에 새 커밋이 올라가면 연결된 Vercel 프로젝트가 자동 재배포합니다.
+
+기존 프로젝트의 Root Directory나 Output Directory Override가 다르게 설정되어 있으면 위 설정으로 수정한 다음 Redeploy하세요. 배포 후 `/`에서 화면이 보이고 `/api/weather?city=Seoul`에서 JSON이 반환되는지 확인하세요.
