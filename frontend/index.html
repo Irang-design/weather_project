@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="도시 이름으로 간편하게 확인하는 현재 날씨">
+  <title>오늘의 날씨</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <div class="brand"><span aria-hidden="true">☀</span> WEATHER NOTE</div>
+    <header>
+      <p class="eyebrow">당신의 하루를 위한 작은 준비</p>
+      <h1>지금, 그곳의 날씨</h1>
+      <p class="intro">어디로 향하시나요? 도시를 입력하고 현재 날씨를 확인하세요.</p>
+    </header>
+    <section class="panel" aria-label="도시 날씨 검색">
+      <form id="weather-form">
+        <label for="city">도시 이름</label>
+        <div class="search-row">
+          <input id="city" name="city" placeholder="예: 서울, 부산, Tokyo" minlength="2" maxlength="100" required autocomplete="off">
+          <button id="submit" type="submit">날씨 확인 <span aria-hidden="true">↗</span></button>
+        </div>
+        <p class="hint">한글 또는 영문으로 검색할 수 있어요.</p>
+      </form>
+      <p id="status" role="status" aria-live="polite">도시를 검색하면 이곳에 날씨가 표시됩니다.</p>
+      <article id="weather" hidden aria-label="현재 날씨">
+        <div class="location-row"><div><p class="eyebrow">현재 날씨</p><h2 id="location"></h2><p id="region"></p></div><span id="icon" aria-hidden="true"></span></div>
+        <div class="temperature"><span id="temperature"></span><span class="degree">°C</span></div>
+        <p id="description"></p>
+        <dl class="details">
+          <div><dt>체감 온도</dt><dd id="feels-like"></dd></div>
+          <div><dt>습도</dt><dd id="humidity"></dd></div>
+          <div><dt>풍속</dt><dd id="wind"></dd></div>
+        </dl>
+        <p id="updated" class="hint"></p>
+      </article>
+    </section>
+    <footer>날씨 데이터: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> · 도시 데이터: <a href="https://www.geonames.org/" target="_blank" rel="noopener noreferrer">GeoNames</a><br>같은 이름의 도시가 여러 곳이면 첫 번째 검색 결과를 표시합니다.</footer>
+  </main>
+</body>
+</html>
